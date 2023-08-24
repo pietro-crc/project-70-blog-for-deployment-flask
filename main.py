@@ -9,7 +9,7 @@ from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.orm import relationship
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
-# Optional: add contact me email functionality (Day 60)
+# Optional: add contact me email functionality
 # import smtplib
 import os
 
@@ -17,7 +17,6 @@ import os
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = str(os.environ.get('FLASK_KEY'))
-print(os.environ.get('FLASK_KEY'))
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
@@ -261,9 +260,8 @@ def about():
 def contact():
     return render_template("contact.html", current_user=current_user)
 
-# Optional: You can inclue the email sending code from Day 60:
-# DON'T put your email and password here directly! The code will be visible when you upload to Github.
-# Use environment variables instead (Day 35)
+# Optional: You can inclue the email sending code from - 60:
+# Use environment variables instead (35)
 
 # MAIL_ADDRESS = os.environ.get("EMAIL_KEY")
 # MAIL_APP_PW = os.environ.get("PASSWORD_KEY")
