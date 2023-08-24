@@ -11,11 +11,13 @@ from sqlalchemy.orm import relationship
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 # Optional: add contact me email functionality (Day 60)
 # import smtplib
-
+import os
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+
+app.config['SECRET_KEY'] = str(os.environ.get('FLASK_KEY'))
+print(os.environ.get('FLASK_KEY'))
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
@@ -40,7 +42,8 @@ gravatar = Gravatar(app,
                     base_url=None)
 
 # CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = str(os.environ.get("DB_URI", "sqlite:///posts.db"))
 db = SQLAlchemy()
 db.init_app(app)
 
