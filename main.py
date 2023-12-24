@@ -15,6 +15,7 @@ import os
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 
 app.config['SECRET_KEY'] = str(os.environ.get('FLASK_KEY'))
 ckeditor = CKEditor(app)
@@ -24,6 +25,7 @@ Bootstrap5(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 
 @login_manager.user_loader
 def load_user(user_id):
