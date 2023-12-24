@@ -25,7 +25,7 @@ Bootstrap5(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
+
 
 @login_manager.user_loader
 def load_user(user_id):
